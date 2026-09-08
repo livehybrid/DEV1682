@@ -1,0 +1,11 @@
+[]
+export = system
+owner = nobody
+access = read : [ * ], write : [ admin, sc_admin ]
+
+[restmap]
+export = system
+
+[tools]
+export = system
+

@@ -1,0 +1,70 @@
+{
+  "profile_storefront_ip": {
+    "title": "Storefront IP Profile Input",
+    "type": "object",
+    "properties": {
+      "ip": {
+        "title": "Client IPv4 Address",
+        "description": "IPv4 address to investigate, often copied from buttercup_security_mcp_rank_ssh_attackers.",
+        "type": "string",
+        "required": "true",
+        "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$",
+        "examples": ["87.194.216.51"],
+        "validation_message": "IP must be a valid IPv4 address."
+      }
+    }
+  },
+  "list_storefront_sessions": {
+    "title": "Storefront Session List Input",
+    "type": "object",
+    "properties": {
+      "ip": {
+        "title": "Client IPv4 Address",
+        "description": "IPv4 address whose storefront sessions should be returned.",
+        "type": "string",
+        "required": "true",
+        "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$",
+        "examples": ["87.194.216.51"],
+        "validation_message": "IP must be a valid IPv4 address."
+      },
+      "outcome": {
+        "title": "Session Outcome",
+        "description": "Return completed checkout sessions, checkout-error sessions, or all sessions.",
+        "type": "string",
+        "required": "false",
+        "default": "completed",
+        "enum": ["completed", "error", "all"],
+        "examples": ["completed", "error"],
+        "validation_message": "Outcome must be completed, error, or all."
+      },
+      "limit": {
+        "title": "Result Limit",
+        "description": "Maximum number of session summaries to return.",
+        "type": "integer",
+        "required": "false",
+        "default": 3,
+        "minimum": 1,
+        "maximum": 25,
+        "examples": [3, 5, 10],
+        "validation_message": "Limit must be an integer between 1 and 25."
+      }
+    }
+  },
+  "get_storefront_baseline": {
+    "title": "Storefront Baseline Input",
+    "type": "object",
+    "properties": {
+      "row_limit": {
+        "title": "Result Limit",
+        "description": "The baseline always returns exactly one result row.",
+        "type": "integer",
+        "required": "false",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "examples": [1],
+        "validation_message": "Row limit must be 1."
+      }
+    }
+  }
+}
