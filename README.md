@@ -78,11 +78,7 @@ tools alongside the defaults (15 tools in total).
 
    > Use the installed Buttercup tools to identify the source with the most
    > failed SSH logins. Determine whether it ever logged in successfully and
-   > show its most-targeted systems and accounts. Then investigate the same
-   > IP in the storefront, compare its behavior with the storefront
-   > baseline, and show three completed checkout sessions. Recommend
-   > whether it should be escalated, clearly separating observed facts from
-   > inference.
+   > show its most-targeted systems and accounts.
 
 2. The assistant calls the newly enabled tools and returns an investigation
    summary — for example, the identified attack, targeted systems, targeted
@@ -111,13 +107,40 @@ header.Content-Type = application/x-www-form-urlencoded
 tags = buttercup, storefront, commerce, baseline
 ```
 
+Next, add the tool's input signature to
+`buttercup_storefront_mcp/static/tool_input_payload_signatures.json`. Add a
+comma after the closing brace of the existing `list_storefront_sessions`
+entry, then insert this new top-level entry before the file's final closing
+brace:
+
+```json
+  "get_storefront_baseline": {
+    "title": "Storefront Baseline Input",
+    "type": "object",
+    "properties": {
+      "row_limit": {
+        "title": "Result Limit",
+        "description": "The baseline always returns exactly one result row.",
+        "type": "integer",
+        "required": "false",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "examples": [1],
+        "validation_message": "Row limit must be 1."
+      }
+    }
+  }
+```
+
 Then bump the version to `1.0.1` in `buttercup_storefront_mcp/default/app.conf`
 (2 occurences `[launcher]` and `[id]` stanzas).
 
 Now edit the `buttercup_storefront_mcp/app.manifest` file (line 8) and change the `1.0.0` version to `1.0.1` to match. Then we re-package the app:
 
-1. Rebuild the `buttercup_storefront_mcp` tarball with the updated `tools.conf` and
-   `app.conf`. From the repo root directory run:
+1. Rebuild the `buttercup_storefront_mcp` tarball with the updated `tools.conf`,
+   `tool_input_payload_signatures.json`, `app.conf`, and `app.manifest`. From the
+   repo root directory run:
 
    ```
    tar --exclude='__pycache__' --exclude='*.pyc' -czf buttercup_storefront_mcp-1.0.1.tar.gz buttercup_storefront_mcp
