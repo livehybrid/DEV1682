@@ -49,5 +49,22 @@
         "validation_message": "Limit must be an integer between 1 and 25."
       }
     }
+  },
+  "get_storefront_baseline": {
+    "title": "Storefront Baseline Input",
+    "type": "object",
+    "properties": {
+      "row_limit": {
+        "title": "Result Limit",
+        "description": "The baseline always returns exactly one result row.",
+        "type": "integer",
+        "required": "false",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "examples": [1],
+        "validation_message": "Row limit must be 1."
+      }
+    }
   }
 }
