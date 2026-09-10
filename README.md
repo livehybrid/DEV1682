@@ -41,7 +41,16 @@ log in with your provided credentials.
 Both `buttercup_security_mcp` and `buttercup_storefront_mcp` are now
 installed.
 
-## 3. Configure the MCP server connection in the chat system
+## 3. Enable MCP tools
+
+1. In your Splunk tab, within the Splunk MCP server app, go to the **Tools** tab.
+2. You'll see the Buttercup Security and Buttercup Storefront MCP tools
+   listed as disabled.
+3. Click **Enable all tools** next to each.
+4. Back in the chat system, click **Refresh tools** (just above the tool
+   list).
+   
+## 4. Configure the MCP server connection in the chat system
 
 1. Open the workshop chat system: **https://workshop.cloud.livehybrid.com**.
 2. Enter your workshop code (e.g. `dev1682`) — this ties your chat session
@@ -57,19 +66,8 @@ installed.
 You should now see the connection to your show stack, along with an option
 to choose which model to use in the top left hand side. The default are sufficient.
 
-## 4. Enable and refresh MCP tools
 
-By default, only the 10 standard Splunk MCP tools are available — the
-Buttercup tools aren't enabled yet.
-
-1. In your Splunk tab, within the Splunk MCP server app, go to the **Tools** tab.
-2. You'll see the Buttercup Security and Buttercup Storefront MCP tools
-   listed as disabled.
-3. Click **Enable all tools** next to each.
-4. Back in the chat system, click **Refresh tools** (just above the tool
-   list).
-
-The tool list now includes the Buttercup Security and Buttercup Storefront
+The tool list (top right) now includes the Buttercup Security and Buttercup Storefront
 tools alongside the defaults (15 tools in total).
 
 ## 5. Run an investigation
